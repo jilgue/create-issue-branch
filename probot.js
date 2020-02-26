@@ -1,6 +1,8 @@
 const Raven = require('raven')
 const Config = require('./config')
 const AWS = require('aws-sdk')
+// eslint-disable-next-line no-unused-vars
+const ActionsCore = require('@actions/core')
 
 module.exports = app => {
   app.log('App was loaded')
@@ -34,7 +36,7 @@ async function createIssueBranch (app, ctx, config) {
   const owner = getRepoOwner(ctx)
   const repo = getRepoName(ctx)
   const branchName = await getBranchNameFromIssue(ctx, config)
-  app.setOutput('branch-name', branchName)
+  ActionsCore.setOutput('branch-name', branchName)
   if (await branchExists(ctx, owner, repo, branchName)) {
     await addComment(ctx, config, 'Branch already exists')
   } else {
