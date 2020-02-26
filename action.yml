@@ -6,3 +6,6 @@ branding:
 runs:
   using: 'node12'
   main: 'dist/index.js'
+outputs:
+  branch-name:
+    description: 'The name of branch created'

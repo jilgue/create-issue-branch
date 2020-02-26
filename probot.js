@@ -34,6 +34,7 @@ async function createIssueBranch (app, ctx, config) {
   const owner = getRepoOwner(ctx)
   const repo = getRepoName(ctx)
   const branchName = await getBranchNameFromIssue(ctx, config)
+  app.setOutput('branch-name', branchName)
   if (await branchExists(ctx, owner, repo, branchName)) {
     await addComment(ctx, config, 'Branch already exists')
   } else {
